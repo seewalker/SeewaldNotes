@@ -1,13 +1,13 @@
 Seewald Notes is a structured, modal notation for transcribing one's learning process.
 It is so named because it was developed by and will probably only be used by Alex
-Seewald, but it is wonderful you are reading this document! Because many people effectively
-write notes in an informal manner, one might wonder why to bother with a standard structure?
-Seewald Notes borrows from a richer set of influences than the english language and
-identifies the current mode of communication for the sake of clarity. This act applies the
-idea of data-types to one's own thoughts. A big win, eventually, will be a vim plugin that
-defines a set of macros and syntax-highlighting for Seewald Notes. All this formalization
-will hopefully lead to re-use of the best ideas and increased memory-throughput when
-reviewing one's notes.
+Seewald, but it is wonderful you are reading this document! Because many people
+effectively write notes in an informal manner, one might wonder why to bother with
+a standard structure?  Seewald Notes borrows from a richer set of influences than the
+english language and identifies the current mode of communication for the sake of
+clarity. This act applies the idea of data-types to one's own thoughts. A big win,
+eventually, will be a vim plugin that defines a set of macros and syntax-highlighting
+for Seewald Notes. All this formalization will hopefully lead to re-use of the best
+ideas and increased memory-throughput when reviewing one's notes.
 
 Like how the written English language uses single quotes to reference a phrase
 rather than use a phrase, Seewald Notes uses a number of sigils to denote modes.
