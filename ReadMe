@@ -1,0 +1,34 @@
+Seewald Notes is a structured, modal notation for transcribing one's learning process.
+It is so named because it was developed by and will probably only be used by Alex
+Seewald, but it is wonderful you are reading this document! Because many people effectively
+write notes in an informal manner, one might wonder why to bother with a standard structure?
+Seewald Notes borrows from a richer set of influences than the english language and
+identifies the current mode of communication for the sake of clarity. This act applies the
+idea of data-types to one's own thoughts. A big win, eventually, will be a vim plugin that
+defines a set of macros and syntax-highlighting for Seewald Notes. All this formalization
+will hopefully lead to re-use of the best ideas and increased memory-throughput when
+reviewing one's notes.
+
+Like how the written English language uses single quotes to reference a phrase
+rather than use a phrase, Seewald Notes uses a number of sigils to denote modes.
+This is done under the expectation that identifying the context of an expressed
+thought will lead to clarity of thinking.  For example, `# marks the beginning and #'
+marks the end of a region where the content is notably more subjective than the rest
+of the text. `? and ?' enclose a region with a question that the author intends to
+return to, as opposed to a region of text where the question IS the point. `! and !'
+markers later surround the answer to that question. `` '' enclose computer science
+jargon, e.g. regular expressions or pseudocode.
+
+Since thoughts lead to other thoughts, the tree data type provides an analogy and
+structure for thinking. A Seewald Notes filename is the name of root of a subtree
+and each indentation level is a tree-depth level. Because, in a tree, any node can
+be considered the root of a subtree, a Seewald Notes file could be a child of a 
+Seewald Notes directory. In this way, the presence of a Seewald Notes file in the
+filesystem can have conceptual meaning.
+
+A reader of a similar culture to I will recognize influences of BNF, Latex, the
+Spanish language, and Python. Because thinking is such a broad act, a diversity of
+influences rather than a purity of influences is beneficial.
+
+See selfReferentialExplanation.swd for a more in-depth explanation of Seewald Notes
+that is itself a Seewald Notes document.
