@@ -1,7 +1,8 @@
 *Go Rules:
-    *Silent Rules:
+    *Implicit Rules:
         *Once placed on the board, stones may not be moved, only removed by capture.
-    *Loud Rules:
+
+    *Rules:
         *Stones must have at least one liberty to be uncaptured.
         *neutral points: between the players' boundary walls.
         These have no points in the counting.
@@ -22,17 +23,18 @@
 
 Open Questions:
     *`What is an example of a single eye being taken?`?
+     `! At this point, this question seems too basic to actually answer. I once didn't know!'.
 
 *Go Formalisms:
     *In the opening stages, players establish 'bases' around
     the corners.
     *seki: mutually alive pairs of white an black groups
     where neither has two eyes.
-    *ko:
+    *ko: `^kind of like check in chess^'.
 
 *Go Culture:
     *Go players are typically ranked and are aware of each
-    others' rank while playing.
+    others' rank while playing and handicaps are given accordingly.
 
 *My Knowledge:
     *good tactic - establish an eye, connect a seemingly in-danger region to the region with the
