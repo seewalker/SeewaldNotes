@@ -24,9 +24,14 @@ Conceptual Discussion:
     fundamental datatype of lisps, the tree is the fundamental datatype of Seewald
     notes. The name is the file is conceptually the root header. The .swd extension
     marks the file as of Seewald note grammar, as opposed to .py or .tar files.
-    *Wiki syntax, at least that used in wiki.cs.earlham.edu, uses `*' to designate
+    * Wiki syntax, at least that used in wiki.cs.earlham.edu, uses `*' to designate
     subitems of a header. When a sentence under a header is not prefaced by a `*',
     its content is assumed to be relevant to all items in the list (less locality).
+    *Further clarifications on the type of a header exist/e:
+        grammar for headers: `/ <headerName>[/<flag0>|<flag1>...|<flagN>]:'
+        * the `e' flag means that the list is exhaustive.
+        * the `proc' flag means that the steps describe a procedure.
+        * the `ord' flag means that there is ordinal significance to the children.
 
 *Modal Regions:
     Latex uses ` ' as single quote and `` '' as double quote. In this tradition, I use
@@ -49,27 +54,30 @@ Conceptual Discussion:
     *In common speech, there is a distinction between using a word and referencing a word.
     Using words is considered the default mode and referencing a word, or phrase, is
     enclosed by ` '. From the traditon of Latex.
-    *`/ /' is regular expression mode. This is useful for situtations where simple text
-    reasons are not precisely descriptive enough to taste. (I know this shadows c-style
-    multiple line comment mode, but it resembles s/<target>/<replacement> regular
-    expressions a-la */perl|sed|vimL/*.
+    *`/ /' is definition mode. BNF, regular expressions, or similar ideas fall into this 
+    region. 
     *Headers, e.g. `Modal Regions' in this sentence's header, are followed by a colon.
-    *<identifier> ::= <Explanation of idea>. From the BNF tradition.
     *(<non-essential commentary>). As in the english language, parenthesis
     enclose commentary on one's writing which has a degree of separation from
     the text itself. Reflecting the fact that words themselves have some degree
     of separation from reality, reality itself can be considered parenthesis level
     zero, .swd files (or I would consider most non-meta communication) are of
-    parenthesis level one. In the recursive tradition of computer science, infinite
+    parenthesis level one. In the recursive tradition of computer science, deep
     nesting of parenthesis is possible and sometimes a good idea, `#but sometimes
     annoying if people get carried away with it #'.
     *As in the english language sentences begin with capital letters or non-text
     content and end with periods.
+    *`^ ^' is analogy mode. A problem in people's thinking is mistaking the map for
+    the territory and this seeks to reduce that error.
+    *@<Header0>.<Header0A>...@ is a reference to another region in SeewaldNotes that
+    contains information.
+     `? a vim mark would be useful at any reference. How could I automate this with my
+     vim plugin?'.
 
-*Explanations:
+*Open Questions:
     *Latex uses $ <text> $ to enclose a mathematics mode because people often use latex
     for mathematics, so quickness of entering and exiting the mode is an opporunity for
-    much time savings.
+    much time savings.`? What sort of shortcuts might I want ?'.
     *`? What should the role of whitespace be?':
     *Why do ` ' enclose the supplementary characters [#?!.*] rather than a ` `? '?' ordering?
     Having ` ' yields a symmetry.
@@ -88,10 +96,6 @@ Conceptual Discussion:
     to likely ever use this note taking structure so `Seewald' seems descriptive. If
     anybody else ever adopts this structure, which I would consider a huge honor, the
     name ought to be changed.
-
-*To Do:
-    *Vim plugin for Seewald notes:
-        *Highlighting:
 
 *Issues:
     *I used the word `sentence' in contradictory ways in this document.

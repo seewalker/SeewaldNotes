@@ -32,3 +32,5 @@ influences rather than a purity of influences is beneficial.
 
 See selfReferentialExplanation.swd for a more in-depth explanation of Seewald Notes
 that is itself a Seewald Notes document.
+
+Note: The vim plugin is in a very rough, non-functional stage. Not yet for actual use.

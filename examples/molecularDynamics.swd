@@ -1,0 +1,174 @@
+*Scientific Concepts at Work:
+    *Particle Mesh Ewald:
+        `/ Particle Mesh Ewald :: [Atoms] -> Energy Value /'.
+        *Defines global interaction potential as the sum of a short-range term which is a sum
+        of potentials in `~real space~' and a long-range term which is a sum of potentials in
+        `~fourier space ~'.
+        *Runs in O(n lg(n)) time rather than direct calculation which runs in O(n^2) time.
+        *The calculation method uses periodic boundary conditions.
+        `?What is fourier space?'
+
+    *Lennard Jones Potential:
+        *V_LJ = 4 * depth_of_well * ( (sigma/radius)^12 - (sigma/radius)^6)
+        where sigma ::= the distance at which V_LJ = 0.
+        *The 12th degree term models pauli repulsion from overlapping electron space.
+        *The 6th degree term describes longer-range Van Der Waals potential.
+        *Intersecting Note: according to Michael Lerner an exponent of 8 for the Van Der
+        Walls term is more physically accurate, but 6 is computationally quicker and not
+        sufficiently innacurate such that people usually choose to use 6.
+    *Models of Water Molecules:
+        Since most of the atoms in MD simulations are water, there are significant performance
+        gains from treating a water molecule not as 3 separate atoms but rather as a single
+        approximated entity.
+        *TIP3P is the name of the water model we used.
+
+    *SHAKE:
+        * A constraint algorithm.
+
+    *Jarzynski relationship:
+        *It is the computational device used to calculate free energy
+        across a steered molecular dynamics simulation.
+
+    *`? Why do we the seemingly obscure 3D-gon that we do rather than a sphere?'
+
+*Mechanics of Simulations:
+    *Building a parameter & topology file/alg:
+        *Start LEaP, load a pdb file (generated from x-ray crystallography),
+    *Run amber with a:
+        *A flag determining whether to over-write or immediately halt a simulation whose
+        output files shadow existing files, -O.
+        *run-configuration file, specified with -i flag:
+            *Amber input files have a comment for a first line, a control section ``&cntrl'',
+            and perhaps other sections if one is doing something particular that requires it
+            (e.g. SMD).
+            *Observations about names for Amber variables:
+                *`/i.*/' flags have to do with parameters about the input to and the output
+                from the simulation.
+                *`/nt./' flags have to do with state that determines design decisions of the
+                simulation. Ensemble is specified, etc.
+            *Basic elements of the control section:
+                *nstlim: number of time steps
+                *dt: amount of time per time step
+                *maxcyc: a variable used during minimization.
+            *`/i.*/' flags:
+                *irest: determines whether a restart file is used.
+                *imin: determines whether the run is a minimization run.
+                *ioutfm: determines format of outputed velocity and coordinate sets (binary
+                or textual).
+            *`/nt./' flags:
+                *ntb:
+                *ntc: flag for SHAKE to perform bond-length constraints. @Scientific.SHAKE@
+                *ntf:
+                *ntp: flag for constant pressure dynamics.
+                *ntt: flag for temperature regulation.
+                *ntx: signals whether initial conditions (coords & velocities) are provided.
+                *ntwr:
+                *ntwx:
+            *Other elements of the control section I know about:
+                *restraintmask:
+                *temp0, pres0 are the reference temperature and pressure values.
+        *parameter and topology file, specified with -p flag:
+            *gives names, such as `H21' to atoms within an ordering scheme
+            that is reflected in the coordinate files.
+            *specifies some invariant properties of the atoms, such as charge, atomic number,
+            mass, and various paramters of the simulation. Each of these data regions are
+            separated by a %FLAG header.
+        *input-restart file, specified with -r flag.
+            *`/<restart file> ::= <Name>
+                                  <Number of Atoms>
+                                  <rst cont>
+               <rst line> ::= <Atom0 X coord> <Atom0 Y coord> <Atom0 Z coord><Atom1 X coord> <Atom1 Y coord> <Atom1 Z coord>
+               <rst cont ::= <rst line> \n <rst cont> | Nothing
+               //'
+        *output-restart file, specified with -c flag.
+            *see input-restart-file for a grammar description of restart files.
+        *output-file, specified with -o flag.
+            *`/<output file> ::= <Amber Variant>
+                                 <Timestamp>
+                                 <Boolean Value of whether -O flag is used>
+                                 <copy of input file, as identified with -i flag>
+                                 ...<various other stuff>
+                                 <step cont>
+               <step cont> ::=   NSTEP    ENERGY     RMS   GMAX    NAME    NUMBER
+                         <timestep val>  | WYSIWYG     |        | these relate to the GMAX|
+            *`? What is GMAX ?'.
+             `! Rough answer: A mechanism for catching possible errors !'.
+        *Step-by-Step coordinate files that MD visualizer programs can read, specified by a
+        -x flag.
+    *Stages of Our Simulations/o|e:
+        *Minimization:
+            *Initial, Final energies of b7_min_99.56.out - (-6.46E4,-7.61E4)
+        *Equilibration:
+        *Heat:
+        *Production:
+    *Using the Cluster/e:
+        With either of these
+        *ssh to a node from as0 and simply run a simulation.
+        *qsub a job.
+        *`? How to choose a method?'
+         `! Using the queue allows everybody to automate sharing. A raw ssh to a node
+            was at one point necessary to run gpu computations.
+            `?Is this still necessary?'!`?`
+        *PBS notes:
+           *The torque company developed a proprietary fork of this software that we use.
+           *Using PBS is done through shell scripts with a special set of directives at
+           the top of the file:
+                *``#PBS -j oe'' : put output and error in the same file.
+                                  `?Where is this file and what does it contain?'.
+                *``#PBS -l `/<key>=<value>
+                   <key> = walltime | nodes | ppn
+                        where ppn means processors per node/'.
+                *``#PBS -N `/<name of process>/'.
+           *PBS shell scripts are aware of environment variables established in my
+           bashrc.
+           *PBS has its own environment variables:
+                *PBS_O_WORKDIR
+                *PBS_NODEFILE
+          *The qstat and qdel commands do what they sound like.
+
+*Variants of Tools:
+    *pmemd is a version of sander that runs with better performance for Particle Mesh Ewald
+    simulations. It accepts the same command line flags as sander.
+    *VMD and pymol both do visualization of a wide range of MD file formats. pymol is prettier
+    and uses python for scripting. VMD has more tools and uses tcl for scripting.
+
+*Molecular Dynamics Visualization:
+    *Textual and binary step-by-step coordinate files exist. Amber's mdcrd is a binary
+    format, which has the advantage of using less storage space.
+
+*Umbrella Sampling:
+    *Amberisms:
+        *Having a ``nmropt'' flag in the control section with value 1 signals the presence
+        of distance or angle restraints.
+        *Having a ``jar'' flag in the control section signals that SMD will be used. This
+        internally sets nmropt to 1.
+        *The value of the ``DISANG'' variable (not in any
+        control section (it is known to work at the tail of the file)) is the name of the
+        file which contains specifications of the restraints.
+        *Grammar for restraint specification files (I call mine disang.<angle_of_window>):
+          *`/ <comment line>
+               &rst
+                iat=<comma separated list of the atoms>
+                r2=<value of angle in degrees>, rk2=<value of force constant>, r2a=<value of angle
+                                                                                    in degrees>,
+               &end /'.
+          *`? What is the difference between r2 and r2a?'
+           `! `# r2a is value at the end of the window #' !'.
+
+    *Parameters and design decisions of my simulation:
+        *``ntt=3'': use langrangian dynamics for regulation. This requires a collision frequency
+        parameter called gamma_ln.
+    *My code-generating code:
+        *It intelligently handles the recursive generation of files, including the starting
+        and ending conditions which are slightly different.
+        *It has internal state hardcoded that should probably be initialized with command line
+        arguments and updated algorithmically.
+        *It used to qsub the first PBS script. That was some nice magic, but manually starting
+        the chain is probably a better user experience.
+
+*Relevant Papers:
+
+*Other:
+    *There is a lot of dynamic typing in the molecular dynamics tools I've used. For instance,
+    whether the ``iat'' flag refers to a distance or dihedral angle restraint depends on
+    the number of comma-separated fields.
