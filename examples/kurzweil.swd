@@ -1,0 +1,105 @@
+*Beliefs and Values:
+    *"No matter what quandries we face...there is an idea that can enable us to prevail. Frthermore,
+    we can find that idea.(2)"
+    * He believes that he has the basis to predict the substance of future technologies. `# I can't
+    believe this is a substantiated belief #'.
+    * He believes that "the human machine civilization" (5) is destiny.
+    * "I do find the behavoir of rule 110 rather delightful" (87). He is not hesitant to bring emotion
+    into his writing. `# Projecting delight about science is to make himself seem smart #'.
+    *Human/Tech metaphors:
+        They are unsubtle.
+        *"massively parallel brains"(8).
+        *"The blood-brain-barriet is a complex system that features gateways complete with keys and passwords that allow entry into the brain" (163).
+        *"version 1.0 bodies".
+        *Biological phenomena arise from Biological encodings from the iteration of a probabilistic
+        fractal.
+        * There is the idea, that Kurzweil traces to Wolfram and Feynman, that the universe is the
+        enactment of a cellular automata. (85).
+
+*Justification Methods:
+    *Support for his optimistic predictions - analogy to math. "The reason for [people's underestimation]
+    is that exponential curves look linear when examined over only a short interval".(12)
+    * He says that deflation is a non-issue because, although money will become more valuable, people
+    will find the need to buy more stuff (102). This ignores the idea that other issues are present
+    with deflation and it attempts to answer an enormously complicated question with some logically-stated
+    but not sufficiently established steps.
+
+*Ideas:
+    *Misc Ideas:
+        *"Scientist's pessimism" - immersion in current work so aware of difficulties so not emotionally
+        in a place to agree with Kurzweil.
+        * He is aware that the is a "saturation" (29) point to the singularity. When physical limitations
+        of computation are the upper bound.
+        * "Fulfilling the wishes of a revered biological legacy will occupy only a trivial portion
+        of the intellectual power that the Singularity will bring"(30).
+        * Complexity of something ::= Length of Minimal Computer program that can generate it (minimal ::=
+        incompressible) with random data and repeated structs not hardcoded, but specified as the words do.
+        * Cellular automata lack evolution, according to Kurzweil. They are indeed universal computers, but
+        they lack 'software'.
+        * "Evolution is happening so slowly that its influence, in comparison to technology, is negligable" (94).
+    *Predictions:
+        * nanotubes will be the material for all computer circuitry in the future.
+        * Biological computing will necessarily be SIMD style (118).
+        * Biological, optical, and quantum computing are only ammenable to a narrow range of problems. This
+        continues the evident trend of hardware becoming increasingly specialized.
+    *References to Established Research:
+        *Basis function :: virtual cortex input -> corresponding muscle action. This is a lot like table lookup in
+        AI. (179)
+        *Spindle cells are specialized for emotional reaction. They have a much higher than average number of
+        connections and are few and are only in humans&apes. These spindle cells are actually absent in newborns.
+        * Plank's constant is the smallest scale at which we can apply energy for computation. His language is spot on;
+        planck's constant is not the smallest possible energy increment, it is the constant that is directly proportional
+        to the smallest possible energy increment for a wave of some frequency. Him pointing out the smallness of this
+        value does indeed form a lower-bound on energy. (133)
+        * Theoretical limit of storage density: 50 bits storage in a Hydrogen atom because that is the number of
+        distinct attributes (134). `# yes, but the same could be said about voltage levels. engineers, however, use
+        only high and low (binary) voltage levels in a circuit to express state because it lowers the incidence of
+        error in interpretation #'. 
+        
+    *My connections:
+        *Kurzweil mentions pairing of chromosomes as an error-correction mechanism. In this way, parity
+        and RAID are biological-esque.
+        *"Trainable and nondeterministic computing" (149). Can non-deterministic computing be done with reversible
+        logic games? That seems paradoxical. All functions would be many-to-many, and so no longer functions at all.
+        *"The discarding of intermediate results in a computation generates enough heat that storing more would reduce heat
+        dissipation." "When a bit of information is erased, that information has to go somewhere." In general, data is
+        not explicitly erased. The references to it are simply freed and it has the same meaningless value until it
+        gets allocated again. For example, malloc sets all values to 0 before allocation (but since this is such a highly
+        regular operation).
+
+*Ideas of Credibility:
+    * His graphs of various well-defined exponentialy functions of a tech reaction coordinate over time
+    present a persuasive picture. (60-85).
+    *"The principles of a field are actually a set of interwoven stories about the structure and behavoir
+    of field elements" (167).
+    * "The key to the scalability of human intelligence is our ability to build models of reality in our mind. These
+    models can be recursive, meaning that one model can include other models, which can include yet finer models,
+    without limit." (198) 
+    * His acknowledgement of the possibility of physical limits to computation adds credibility. Although
+    he may be exceptionally optimistic, this shows that he is not just a cheerleader.
+    * Theoretical computational capacity of an object is $ m c^2 pi / h$
+    
+*Open Questions:
+    * How will software abstractions mutate with the switch to radically different computing hardware.
+    Will we still have haskell and python?
+    * A philosophical question about computation is how organization and interpretation is manifested.
+    As Kurzweil mentions, a rock contains around 10^40 bits of information, but effectively no
+    computational ability. What is the difference between something that needs to be described
+    and a `~ universal machine ~' capable of modeling?
+    * How does reversible computing work? The answer to this question also entails answering how
+    memory works physically.
+     
+*Cultural Context
+    *Similarities:
+        *2001 A Space Odyssey has similar epoch-based, pro-evolution vibes. Only, the star child
+        represents the replacement of humanity but Kurzweil welcomes the replacement of our state.
+    *He references many well-regarded thinkers of the past.
+    *Criticism:
+        *My criticisim:
+            *He puts an undefined 'Technological capacity' on a fucking y axis.
+            *He includes Charles Darwin and Timothy Leary in his fictional dialoge. Very corny, but
+            also kind of cool.
+            * He claims that existing economical models are obsolete without justification (99).
+        *From wikipedia:
+            *Hofstadter - "Its an intimate mixture of rubbish and good ideas, and its very hard to disentangle the two".
+            *Mitch Kapor - the singularity is "intelligence design for the IQ 140 people".

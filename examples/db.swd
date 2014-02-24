@@ -1,0 +1,40 @@
+*definitions:
+    *relation ::= a set of records each of which has the same number and type of fields.
+    *field ::= column.
+    *schema:
+         a specification of types for a table:
+        *conceptual schema ::= describes the stored data in terms of the schema.
+        *physical schema ::= not the interface schema, but the disk schema.
+        *external schema ::= a table which consists of computations on a conceptual schema.
+                             a synonym - view.
+    *data definition language:  
+        describes external and conceptual schemas.
+        *examples/!e:
+            *SQL.
+            *QBE(query by example).
+    *SQL ::= Data {Definition,Manipulation,Control} Language U Transaction Control Language
+        where Definition ::= Create,Alter,Truncate,Drop
+              Manipulation ::= Select,Insert,Update,Delete
+              TCL ::= Commit,Rollback,SavePoint
+              DCL ::= `? ?'
+    *key ::= unique identifier for a tuple.
+    *page ::= unit of disk space.
+    *Transaction:   
+        any execution of a user program in a DBMS
+        *Essential Properties/e:
+            *Isolation ::= no influence of other programs' access.
+            *Atomicity ::= a transaction finishes entirely or aborts without any result.
+            *Durability ::= if a transaction finishes but there is a system crash, the intermediate
+                            results must be saved to the disk eventually.
+
+*What is the point?
+    *Handle concurrent access from multiple application programs with a locking protocol.  
+    *Integrity Constraints: conditions (e.g uniqueness of field value) can be easily applied to
+    table instances.
+    *DBMSs often re-implement memory access functionality already provided by operating systems
+    in a way that is optimized for the db.
+
+*SQLisms:
+    *At the time of table creation, the CONSTRAINT keyword can make a field name a key.
+    *FOREIGN KEY - can make a field link to another table. It can have triggered events.
+
