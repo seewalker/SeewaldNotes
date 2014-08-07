@@ -1,0 +1,100 @@
+Conceptual Discussion:
+   *In general, the absence of some marker should not convey meaning because absence
+   is usually harder to notice than presence. It is, however, attractive in the planning
+   stage, so a few important exceptions can be made. For example the absence of `*' in
+   sentences means less locality (more relevant to all items of the group).
+   *The sorting of content under headers is inexact in respect to the best `/way(s)?/' of
+   thinking about it. The groupings are more a product of how the author is currently
+   thinking and best able to express those thoughts.
+
+*Data Types:
+    Like how arrays are the fundamental datatype of c and how s-expressions are the
+    fundamental datatype of lisps, the tree is the fundamental datatype of Seewald
+    notes. The name is the file is conceptually the root header. The .swd extension
+    marks the file as of Seewald note grammar, as opposed to .py or .tar files.
+    *The default mode is called `text'. It conforms more closely to natural language semantics. 
+    * Wiki syntax, at least that used in wiki.cs.earlham.edu, uses `*' to designate
+    subitems of a header. When a sentence under a header is not prefaced by a `*',
+    its content is assumed to be relevant to all items in the list (less locality).
+    *Further clarifications on the type of a header exist/e:
+        grammar for headers: `/ <headerName>[/<flag0>|<flag1>...|<flagN>]:' /'
+        * the `e' flag means that the list is exhaustive.
+        * the `proc' flag means that the steps describe a procedure.
+        * the `ord' flag means that there is ordinal significance to the children.
+
+*Modal Regions:
+    Latex uses ` ' as single quote and `` '' as double quote. In this tradition, I use
+    `? ?' to enclose questions to return to. `! <text> !' marks answers to the question.
+    The answer to a question has the same tree depth as the question, v.i.z the answer
+    is not a child of the question, it directly follows the question.
+    What is the difference between a question mode and a sentence which ends with
+    a question mark? Question sentences are questions which are of the text. In other
+    words, the question is the point. Question modes relate to more meta matters about
+    the topic and are intended to be answered with an answer mode.
+    *Unix uses ~ as home, so `~ ~' encloses terms with special meaning within the jargon
+    context of the topic at hand. This topic may be explicit or implicit.
+    *# is a prefix that marks a comment in many programming languages. I this tradition,
+    I use `# <text> #' to enclose a region of text that the author considers to be more
+    subjective.
+        `? What is the difference between `#<text>#' regions and (<text>)? I don't know,
+        but I feel that there is a difference ?'.
+        `! ( <text> ) regions are commentary that I consider more factual than
+        `# <text> #' regions (which are more murky|intimate)!'.
+    *In common speech, there is a distinction between using a word and referencing a word.
+    Using words is considered the default mode and referencing a word, or phrase, is
+    enclosed by ` '. From the traditon of Latex.
+    *`/ /' is definition mode. BNF, regular expressions, or similar ideas fall into this 
+    region. 
+    *Headers, e.g. `Modal Regions' in this sentence's header, are followed by a colon.
+    *(<non-essential commentary>). As in the english language, parenthesis
+    enclose commentary on one's writing which has a degree of separation from
+    the text itself. Reflecting the fact that words themselves have some degree
+    of separation from reality, reality itself can be considered parenthesis level
+    zero, .swd files (or I would consider most non-meta communication) are of
+    parenthesis level one. In the recursive tradition of computer science, deep
+    nesting of parenthesis is possible and sometimes a good idea, `#but sometimes
+    annoying if people get carried away with it #'.
+    *As in the english language sentences begin with capital letters or non-text
+    content and end with periods.
+    *`^ ^' is analogy mode. A problem in people's thinking is mistaking the map for
+    the territory and this seeks to reduce that error.
+    *@<Header0>.<Header0A>...@ is a reference to another region in SeewaldNotes that
+    contains information.
+     `? a vim mark would be useful at any reference. How could I automate this with my
+     vim plugin?'.
+
+*Open Questions:
+    *Latex uses $ <text> $ to enclose a mathematics mode because people often use latex
+    for mathematics, so quickness of entering and exiting the mode is an opporunity for
+    much time savings.`? What sort of shortcuts might I want ?'.
+    *`? What should the role of whitespace be?':
+    *Why do ` ' enclose the supplementary characters [#?!.*] rather than a ` `? '?' ordering?
+    Having ` ' yields a symmetry.
+
+*Vocabulary:
+    *sentence ::= an item under a header that is not itself a header. This sentence
+    itself is an example, but a `*' sigil need not be present for membership in the
+    set of sentences.
+    *global tree ::= a word referencing the tree whose root is a file on a filesystem.
+    For example `noteFormat.swd' (this file).
+    *universal tree ::= the root of the filesystem.
+
+*Arbitary Choices:
+    *I named Seewald Notes, and the accompanying abbreviation in the file extension
+    .swd, after myself. This naming is not deep; I predict that I am the only person
+    to likely ever use this note taking structure so `Seewald' seems descriptive. If
+    anybody else ever adopts this structure, which I would consider a huge honor, the
+    name ought to be changed.
+
+*Issues:
+    *I used the word `sentence' in contradictory ways in this document.
+    `? Sentence is clearly a technical word in Seewald Notes context, so I need
+       to decide what exactly it means ?'.
+    *I like it how perl allows any character to be the separator between search
+    and replace regions of search and replace constructs where the choice of charcter
+    is inferred by the first one used. I should be mindful of how to incorperate something
+    like that here.
+*Other:
+    *If there is an Other node, it should be the last node of a subtree. E.g.
+    this section is the global tree. Since every header is the node of a subtree,
+    `Other' sections may be children of a non-global header.
