@@ -8,13 +8,19 @@ Since thoughts lead to other thoughts, the tree data type is a model for certain
 
 ### The Alluded-to Types
 
+- The parent-child relationship is denoted by a ':' at the end of the parent content and the indentation of the child.
 - Lines which start with a '\*' are distinct children of a subtree. Lines starting without the '\*' contain content which applies to that subtree in general and do not have that sense of itemness.
+- `` ''` ' `` enclose a region where the content is being refered to, not 'used' by the author in the default prose way. In a polymorphic way, this mode is also used to reference SeewaldNotes nodes, urls, or something similar.
 - `` `# ... #' `` enclose a region where the content is notably more subjective than the rest of the text.
 - `` `? ... ?' `` enclose a region with a question that the author intends to return to, as opposed to a region of text where the question IS the point.
 - `` `! ... !' `` enclose a region with the answer to a preceding `` `?...?' `` style question.
 - `` `~ ... ~' `` enclose a region with domain-specific jargon.
 - `` `` ... '' `` enclose psuedocode, or interpretable code.
 - `` `/ ... /' `` enclose a BNF-style definitions, or regex-style patterns, or some similar computer science concept applied in a literal or figurative way.
+
+### Special Symbols
+- '%' means 'the current file'
+- '@' is the prefix to a SeewaldNotes reference like " to find the original pictures, see `@%.sources.images' "
 
 ### Installing the Vim Plugin
 ```

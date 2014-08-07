@@ -45,8 +45,8 @@ Conceptual Discussion:
     enclosed by ` '. From the traditon of Latex.
     *`/ /' is definition mode. BNF, regular expressions, or similar ideas fall into this 
     region. 
-    *Headers, e.g. `Modal Regions' in this sentence's header, are followed by a colon.
-    *(<non-essential commentary>). As in the english language, parenthesis
+    *Headers, e.g. `%.Modal Regions', are followed by a colon.
+    *(some non-essential commentary). As in the english language, parenthesis
     enclose commentary on one's writing which has a degree of separation from
     the text itself. Reflecting the fact that words themselves have some degree
     of separation from reality, reality itself can be considered parenthesis level
@@ -54,30 +54,21 @@ Conceptual Discussion:
     parenthesis level one. In the recursive tradition of computer science, deep
     nesting of parenthesis is possible and sometimes a good idea, `#but sometimes
     annoying if people get carried away with it #'.
-    *As in the english language sentences begin with capital letters or non-text
-    content and end with periods.
     *`^ ^' is analogy mode. A problem in people's thinking is mistaking the map for
     the territory and this seeks to reduce that error.
-    *@<Header0>.<Header0A>...@ is a reference to another region in SeewaldNotes that
+    *`@<Header0>.<Header0A>...` is a reference to another region in SeewaldNotes that
     contains information.
-     `? a vim mark would be useful at any reference. How could I automate this with my
-     vim plugin?'.
+    `? It would be pretty cool to have a ctags like parser for SeewaldNotes ?'
 
 *Open Questions:
     *Latex uses $ <text> $ to enclose a mathematics mode because people often use latex
     for mathematics, so quickness of entering and exiting the mode is an opporunity for
     much time savings.`? What sort of shortcuts might I want ?'.
     *`? What should the role of whitespace be?':
-    *Why do ` ' enclose the supplementary characters [#?!.*] rather than a ` `? '?' ordering?
-    Having ` ' yields a symmetry.
-
-*Vocabulary:
-    *sentence ::= an item under a header that is not itself a header. This sentence
-    itself is an example, but a `*' sigil need not be present for membership in the
-    set of sentences.
-    *global tree ::= a word referencing the tree whose root is a file on a filesystem.
-    For example `noteFormat.swd' (this file).
-    *universal tree ::= the root of the filesystem.
+    *I like it how perl allows any character to be the separator between search
+    and replace regions of search and replace constructs where the choice of charcter
+    is inferred by the first one used. I should be mindful of how to incorperate something
+    like that here.
 
 *Arbitary Choices:
     *I named Seewald Notes, and the accompanying abbreviation in the file extension
@@ -86,15 +77,7 @@ Conceptual Discussion:
     anybody else ever adopts this structure, which I would consider a huge honor, the
     name ought to be changed.
 
-*Issues:
-    *I used the word `sentence' in contradictory ways in this document.
-    `? Sentence is clearly a technical word in Seewald Notes context, so I need
-       to decide what exactly it means ?'.
-    *I like it how perl allows any character to be the separator between search
-    and replace regions of search and replace constructs where the choice of charcter
-    is inferred by the first one used. I should be mindful of how to incorperate something
-    like that here.
 *Other:
-    *If there is an Other node, it should be the last node of a subtree. E.g.
-    this section is the global tree. Since every header is the node of a subtree,
-    `Other' sections may be children of a non-global header.
+    *If there is an Other node, it should be the last node of a subtree. Then, if I'm wondering
+    about exceptions to whatever is said, I can know to scan to the end. Oftentimes error-catching
+    code goes at the end of a function; there's probably some reason this seems aesthetically nice.
