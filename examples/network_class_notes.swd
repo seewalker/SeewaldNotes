@@ -1,0 +1,326 @@
+* What is a network?
+    * Connected machines.
+    * Why do we exchange information between computers? (this better be going somewhere)
+        * One wants to get something done (ugh). `~ remote services ~' `~ distributed services ~'
+    * `/ World wide web =/= internet /'. `/ internet ::= WWW ^ IRC ^ SSH ^ Cloud Storage ... /'
+    * What is desireable?:
+        * Transparency. Anybody can talk to anybody.
+        * Analogies 'Reading a file' as an abstract idea. `~ NFS ~'.
+    * What is involved?:
+        Synchronizing asynchronous systems.
+        * Client can find the server. `~ address of interface ~'
+        * Process that executes the service is running.
+        * Server is listening (and ready to dispatch requests to local running services).
+        * Data can be encoded and interpreted.
+        * The information must be validated.
+    * Ways of addressing:
+        * Mac Address
+        * Hostname
+        * IP Address
+        * Ports (an abstract idea)
+        * Interface (a hardware idea, mutliplexed by ports)
+    *  Transformations:
+        * ARP : IP -> MAC
+        * DNS : Honstname -> IP
+    * Which services are on which ports?
+        * /etc/services : describes 'well-known ports'
+        * Port Standards:
+            * (80, http), (443, https), (22, ssh), (23, telnet), (25, smtp)
+    * Protocols:
+        * `/ protocol ::= a standardized agreement. specifies types of messages, syntax of messages (which fields), semantics of messages, rules for sequencing,
+                                                    actions to take for each message. /'
+        * IETF defines many of the most widely agreed upon protocols.
+        * Special words:
+            * may
+            * must
+
+* Chapter One:
+    * HFC - hybrid fiber coaxil medium. local coaxial, longer branches of network have fiber.
+    * Store and Forward packet switching - all of a packet must be recieved before transmission can begin.
+    * There are two types of packet switches - routers and link-layer switches.
+    * circuit switching - the whole path 'belongs' to a packet or packet sequence going through.
+    * upper tier ISPs and lower tier ISPs.
+    * There is special language for packets at certain layers - [(application, message), (transport, segment), (
+                                                                 (network, datagram), (link, frame) ]
+
+* Chapter Two - Application Layer:
+    * Terminology:
+        * end system
+        * certain applications can be said to be bandwidth-sensitive or elastic in the urgency of its requests
+        for memory transfer.
+        * loss tolerance.
+        * end point authentification - are the packets spoofed? how can one tell?
+    * Architectures:
+        * client/server - the server is always on. clients communicate with each other, but through the server.
+        * peer-to-peer - (self-scalable). ISPs are not currently designed to support client/server use patterns.
+        * web caching - the client knows of a proxy server that is 'near' the client. A request is sent there; if the content
+        is indeed cached at that proxy server, it is delivered. Else, the proxy server makes a request to a more remote, stable server.
+    * Transport Services:
+        * TCP:
+            * connection orientation - client and server do a 'handshake' before data flows.
+            * terminology:
+                * segment
+                * payload
+            * When the 'accept' action is done, a connection socket is returned. This is distinct from the
+            listening socket.
+
+        * UDP - connectionless, unreliable data transfer. Includes no queueing mechanism.
+    * Application-layer protocols:
+        * http - a client initiates a TCP connection with a server. thereafter, clients and servers interact
+        via sockets. http is a stateless protocol. http uses persistent connections (no new handshakes between
+        client and server) by default, but can use non-persistent connections:
+            * PDU - protocol data unit.
+            *fields : Connection (the value 'close' makes for non-persistent connections), User-agent, Accept-language
+            * http request first line `/ request line ::= method URL client_version /' where `/ method ::= GET | POST | HEAD | PUT | DELETE/'
+                where HEAD does the same as GET, but has the response give an empty 'entity body' (so its for debugging purposes)
+            * http response first line `/ status line ::= server_version status_num status_txt /'
+            * response status codes/!e:
+                The two hundred family corresponds to success. The four hundred family corresponds to failure. The three hundred family has to do
+                with more intricate matters.
+                * 200 - OK
+                * 301 - Moved Permanently : the new URL is stored in the `~ Location ~' field of the response
+                * 304 - Not Modified : a negative response to a conditional GET request.
+                * 400 - Bad Request : a generic error message
+                * 505 - HTTP Version Not Supported.
+            * http response header lines: `~ Last-Modified ~' : the most-recent changed state of the object (according to the server).
+            * cookie/e:
+                * header line in HTTP response. `~ Set-cookie: <int> ~'
+                * header line in HTTP request. `~ Cookie: <int> ~' this is an identifier.
+                * cookie file kept by client, and managed by browser.
+                * database on server.
+            * conditional GET: a way for caches to verify that its objects are up-to-date. has an `~ If-modified-since ~' header line in the request it sends to the remote server.
+            * Other headers:
+                * ``Refresh: <number of seconds>; <url>''. This header was defined by netscape; as well as all kinds of http extensions and html tags. Netscape, then,
+                sold servers that were compatible with their extensions (this is how they made their money). Jim says this is 'evil'.
+                * The server may say ``Accept-Range <units>''. If the client wants, it can say ``Range: <low>:<high>'' in order to be more specific about
+                its next request made to a large resource.
+                `? What are the advantages of this compared to segmentation at the transport layer ?'
+            * Redirection:
+                * most browsers do not follow http 30{1,2} responses. Most browsers follow the URL attribute of an html meta tag. According to Jim,
+                  this is somewhat backwards.
+        * smtp:
+            * Everything must be encoded in 7-bit ascii, which means that binary attachments must be translated before and after delivery.
+            * The sender and reciever may share a mail server, or have different mail servers which maintain a message queue.
+            * mail servers implement a 'mailbox' for each user.
+            * Uses TCP as the transport protocol.
+            * There are commands like 'HELO <mail_server_name>
+            * An example session:
+                shalom@ec4996:~% sudo launchctl start org.postfix.master
+                shalom@ec4996:~% telnet 127.0.0.1 25
+                Trying 127.0.0.1...
+                Connected to localhost.
+                Escape character is '^]'.
+                220 ec4996.nuo.earlham.edu ESMTP Postfix
+                HELO zimbra.earlham.edu
+                250 ec4996.nuo.earlham.edu
+                MAIL FROM: <akseewa11@earlham.edu>
+                250 2.1.0 Ok
+                RCPT TO: <akseewa11@earlham.edu>
+                250 2.1.5 Ok
+                DATA
+                354 End data with <CR><LF>.<CR><LF>
+                This message sent from a telnet session
+                .
+                250 2.0.0 Ok: queued as AA7EDEFAEF46
+                421 4.4.2 ec4996.nuo.earlham.edu Error: timeout exceeded
+                Connection closed by foreign host.
+        * ftp:
+            * uses two distinct TCP connections. A control connection used for identification, 'cd'-like operations, and 'get' and 'put operations. 
+              And a data connection.
+            * Because of the separation of control from content, ftp is said to be `~ out of band ~'.
+        * telnet
+        * skype
+        * POP3:
+            (a mail access protocol)
+            * client opens connection with server on port 110.
+            * authorization
+            * user retrieves messages and possibly marks some for deletion. retrieval means saving to local disk.
+            * upon the 'quit' command, the deletion queue is flushed.
+        * IMAP:
+            does what POP3 does, additionally providing remote 'mkdir' functionality among other things.
+        * DNS:
+            is a distributed database implemented in a hierarchy of DNS servers, and an application-layer
+            protocol that allows hosts to query the distributed database.
+            * Most DNS servers use BIND (Berkely Internet Name Domain) and use port 53.
+            * DNS servers store resource records `/ resource record ::= (Name, Value, Type, TTL)/' where
+                where Type=A means that Name is a hostname and Value is an ip addr.
+                      Type=NS means that Name is a domain and Value is the hostname of an authoritative DNS server
+                              that knows how to obtain ip addrs for hosts in its domain.
+                      Type=CNAME means that Value is a canonical hostname for the host alias Name.
+                      Type=MX means that Value is the canonical name for the mail server that has alias NAME
+            * 
+        * Bit Torrent:
+            * `/ torrent ::= {peers} /'.
+            * peers in a torrent download equal-size chunks of the file from one another.
+            * over time, a peer accumulates more chunks.
+            * `~ tracker = a node at which peers register. sends ip addresses of peers to each other ~'
+            * the protocol has peers exchange the rarest chunks with the highest priority.
+            * the rate of uploading from A to B increases as B reciprocates. random gifts from A to C may happen to start this process going.
+    * Sockets
+        *In socket programs, a socket is declared with parameters and then bound to a port. sockets have the 'read' and 'write' sys calls defined.
+        *SOCK_STREAM - a standard constant for TCP-based sockets.
+        *SOCK_DGRAM - a standard constant for UDP-based sockets.
+        * `/ address family ::= AF_INET | AF_INET6 | AF_UNIX /'. Unix sockets are often located in /var/run/<daemon_name>d/<foo>.sock
+* Chapter Three - Transport Layer:
+    * The transport layer multiplexes IP's host-to-host transfer into process-to-process communication
+    * "Typicaly, the client side of an application lets the transport layer automatically determine port numbers. The server chooses."
+    * TCP headers have a bit for connection establishment segments. The 'connect' function is networked, not just internal.
+    * UDP does error detection but no correction.
+    * End-end principle is a fancy word for putting stuff like error detection at a high level so that the low level does not seem to matter much
+    * `? What is the relationship between a MTU and a MSS.?'
+      `! MSS is just the payload part of a segment. MTU is the whole thing.!'
+      The MTU needs to be discovered. It depends on stuff in the middle.
+
+    * TCP Structure:
+        * PSH bit - indicates the packet should be sent to the application layer immediately.
+    * TCP Mechanics:
+        * Since there's no 'segment length' field in the TCP header, the segment size is known from sizeof(lower PDU) - (lower_PDU_header_size).
+        * TCP uses only a single timer, not a timer per outstanding packet (like my ABP).
+        * A duplicate ACK is an ACK that reacknowledges a segment for which the sender has already recieved acknowledgement.
+        This happens when something got lost (so its a twice-negative, not a twice-positive as it may sound). Recievers send
+        duplicate ACKs when a higher-than-expected sequence number segment arrives. In the case of three duplicate ACKs, 
+        * Selective acknowledgement - a modification of TCP that allows something other than the cumulative ACK.
+        * FIN_WAIT_1 - the client just send a FIN, has not recieved acknowledgement of that yet.
+        * FIN_WAIT_2 - the client recieved the acknowledgement of its FIN. After this point, the same ending dance is done with
+        roles reversed.
+        * There is then a thirty second time wait after the FIN_WAIT_2 state is exited. This is to avoid stray packets polluting
+        future sockets with that address/port pairing.
+
+        * Fast retransmit - 3 duplicate ACKs mean that the packet's loss is infered (even if this happens before the timeout occurs).
+        * Congestion collapse - a sitution in the graph where lots of work happening and it results in buildup of router buffer rather than stuff
+        getting anywhere.
+        * Congestion Control:
+            * End-to-End Congestion Control - presence of congestion infered by performance.
+            * Network Assissted Congestion Control - explicit feedback. This usually in the form of choke packets.
+            * LastByteSend - LastByteAcked <= min(cwnd, rwnd). rwnd is declared by the client.
+            * There is an algorithm called the TCP congestion-control algorithm:
+                * Slow Start - start with cwnd = 1 MSS. increase as packets are accepted by the peer. When there is a loss
+                event, cwnd gets 1 MSS again (like at the start) and the variable ssthresh gets one half the old value of cwnd. When
+                the value of cwnd equals sshtresh, the slow start phase ends.
+                * Congestion Avoidance - in this stage, the cwnd increase during times of success occurs incrementally by 1 MSS 
+                rather than by doubling.
+                * Fast Recovery
+
+* Chapter Four:
+    Abstract the network as a graph and use graph theory to make decisions.
+    * The IPV4 header contains:
+        * A protcol field (value 1 means the content is ICMP).
+    * Routers:
+        * Steps at incoming input/e:
+            * line termination
+            * data link processing:
+                * packet TTL rewritten
+                * the router counts various stats, some of which done at this point.
+            * lookup, forwarding, queueing
+        * Steps at outgoing output/e:
+            * queuing
+            * data link processing
+            * line termination - this is the name for physical layer functions.
+            * Packet scheduling (which in the queue should go first). techniques:
+                * Drop Tail
+                * Random Early Detection - a weighted average is maintained for the 
+                length of the output queue. If the average queue length is less
+                than a minimum threshold, the packet is admitted. If it is above a max
+                threshold, drop or mark the packet. If between thresholds, have some probability
+                of dropping.
+        * Switching Methods:
+            * A CPU maps input port to output port. 
+            * Via a bus - a label is prepended. the output port corresponding to that label accepts the packet, but all output
+            * Via an interconnection network - a crossbar switch is an example.
+            ports are notified of that packet.
+        * Classless InterDomain Routing:
+            prefixes that need not be 8 16 24 (class A B C subnets, respectively).
+            * Why is there a name for this idea?
+        * Routing Algorithms:
+            * Classes of algorithms:
+                * Link State:
+                * Distance Vector:
+            * Algorithms in Production:
+                * Routing Information Protocol (RIP):
+                    distance vector based.
+                    * each link has cost 1.
+                    * hop ::= number of subnets traversed.
+                * Open Shortest Path First (OSPF):
+        * NAT - an incoming packet whose transport layer portno matches a pattern gets the portno rewritten.
+            * Many homes have a single router with an externally visible ip address, and a 10. or 192. local address per device.
+            * UPnP - a protocol that makes it so that remote hosts can target connections within a NAT. done with yet another number.
+        * IP:
+            * IPv4 datagram structure:
+                * [version, header length, type of service, datagram length, 16 bit ID,
+                   flags, 13-bit fragmentation offset, ttl, upper-layer protocol, header checksum,
+                   source ip address, destination ip address, options, data]
+                * header-length is needed because the 'options' section is of variable lengt.
+                * datagram length is total length (header + data)
+                * options are rarely used and not used in IPv6.
+            * Fragmentation - in order to deal with the variety of link layer protocol MTUs,
+            datagrams sometimes broken in two and reassembled later. Equality in ID number means that
+            the fragments belong to the same datagram. The reassembly is typically done by end systems.
+            flag=0 means that the fragment is the last of its datagram.
+            * Addressing:
+                addresses are 4 bytes.
+                * dotted notation - each byte of the address is written in decimal and separated with a dot.
+                * address assignment strategy is called Classless Internet Domain Routing (CIDR):'
+        * Why does the ip pdu have a 'protocol' field?. The port gets multiplexed between tcp and udp traffic.
+          This is evident when looking at /etc/services (and possibly multiplexed even more).
+
+* Multimedia Applications:
+    * Due to high bit rate, Cisco estimates that 90% of consumer internet traffic will be video.
+    * Three types of streaming/e:
+        * UDP Streaming - the segments are wrapped in Real-Time Transport Protocol (RTP) or similar. There
+        is a separate channel for command (e.g. pause).
+        * HTTP Streaming:
+            * youtube and netflix use this over UDP streaming because A) many clients have
+              firewalls that discard UDP traffic B) too much resources involved in that separate control channel
+            * The ``byte-range'' header is used to negotiate amounts. How exactly that is done depends on complicated
+            logic on client and server sides, hence why I had to install Silverlight to play Netflix.
+        * Adapted HTTP Streaming (DASH):
+            * There is what is called a manifest file that is used to specify rules for how to throttle sending according
+            to the client's accepted range.
+     * If the video is stored, the client may pre-fetch.
+     * CDN (Content Distribution Networks) - an application-specific marshalling of network resources. Directing requests
+     made to meta-services like 'google.com' into the right portion of a cluster.
+* Wireless Networks:
+    * IEEE 802.11:
+        a wireless LAN spec.
+        * access point is the 802.11 language for the signal broadcaster.
+        * Code Division Multiple Access (CDMA) - a family of channel partitioning protocols.
+        they are used so that 
+        *`? Do CDMA protocols multiply each input by a power corresponding to the source and eventually pass
+        off a final number which can be decomposed?'
+        * There is 802.11{a,b,g}. g is the most common, each operating on different
+        frequency ranges.
+        * Basic Serice Set (BSS) ::= wireless-station+ central-base-station.
+        * A BSS has a radius.
+        * A BSS may be in ad-hoc or infrastructure mode.
+        * An SSID corresponds to an access point.
+    * 3G is a wireless WAN spec.
+    * `? What networking decisions are involved in handoff ?'
+
+
+* Network Management:
+    * MIB is a collection of information about managed objects.
+    * SMI is a data-defintion language
+    * SNMP is the protocol for conveying information from manager to managee.
+
+* Earlham Machines:
+    *159.28.1.43 - the DNS server.
+
+* Utilities:
+    * dig <server> <name> <type>
+    * traceroute <host> - outputs addresses from all routers. This suggests routers must have a report-back mechanism. This would be useful
+    for congestion control.
+* Open Questions:
+    * `? How does the server determine `~ Last-Modified ~'. By the mtime, according to the OS? Or something more deliberate?' `! not a good question for Jim. its very specific and likely to change over time!'
+    * `?What does a 'handshake' consist of ?'
+    * `?What kind of DNS politics happen ?'
+    * `?How does congestion control work ?'
+    * `?How is the number of allowed ip addresses enough ?'
+    * `? In what sense is the layering of TCP/IP messy ?'
+    * `? Why isn't PASV mode default for ftp ?'
+    * `? What is a multicast routing algorithm ?'
+    * `? What are recursive vs. iterative DNS traversal ?'
+      `! The recursive process involves a DNS server relaying the problem to the next relevant server.
+         The iterative process involves a single DNS server making many queries and waiting and assembling a final
+         answer for the DNS client !'
+    * `? Why does the IPv4 header have a protcol field?'
+
