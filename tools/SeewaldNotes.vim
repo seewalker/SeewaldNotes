@@ -23,6 +23,7 @@ highlight notesCode ctermfg=4               guifg=#168487 guibg=#e2e1b3
 highlight notesDefinition ctermfg=5      guifg=#36801b guibg=#e2e1b3
 highlight notesJargon ctermfg=6             guifg=#b44d8b guibg=#e2e1b3
 highlight notesFunc ctermfg=6             guifg=#b44d8b guibg=#e2e1b3
+highlight notesEmphasis ctermfg=7
 
 augroup notesHighlighting
     autocmd!
@@ -32,6 +33,7 @@ augroup notesHighlighting
     autocmd BufEnter * syntax region notesSubjectivity start="`#" end="#'" contains=ALL
     autocmd BufEnter * syntax region notesDefinition start="`/" end="/'" contains=ALL
     autocmd BufEnter * syntax region notesCode start="``" end= "''" contains=ALL
+    autocmd BufEnter * syntax region notesEmphasis start="`$" end= "$'" contains=ALL
     autocmd BufEnter * syntax match notesFunc '\(/e\)*\(/ord\)*\(/proc\)*:$'
     autocmd BufEnter * syntax match notesFunc '^\s*\*'
 augroup END
