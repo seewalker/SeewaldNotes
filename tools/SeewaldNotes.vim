@@ -33,5 +33,5 @@ augroup notesHighlighting
     autocmd BufEnter * syntax region notesDefinition start="`/" end="/'" contains=ALL
     autocmd BufEnter * syntax region notesCode start="``" end= "''" contains=ALL
     autocmd BufEnter * syntax match notesFunc '\(/e\)*\(/ord\)*\(/proc\)*:$'
-    autocmd BufEnter * syntax match notesFunc '^\s\s*\*'
+    autocmd BufEnter * syntax match notesFunc '^\s*\*'
 augroup END

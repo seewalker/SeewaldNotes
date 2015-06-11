@@ -40,9 +40,12 @@ Conceptual Discussion:
         but I feel that there is a difference ?'.
         `! ( <text> ) regions are commentary that I consider more factual than
         `# <text> #' regions (which are more murky|intimate)!'.
-    *In common speech, there is a distinction between using a word and referencing a word.
+    * In common speech, there is a distinction between using a word and referencing a word.
     Using words is considered the default mode and referencing a word, or phrase, is
     enclosed by ` '. From the traditon of Latex.
+    * Often when quoting stuff in writing, I feel that I'm intending an exact quote, but
+      I'm not going to look up the exactwording. This inexact quote is designated by
+      "~ ~" .
     *`/ /' is definition mode. BNF, regular expressions, or similar ideas fall into this 
     region. 
     *Headers, e.g. `%.Modal Regions', are followed by a colon.
@@ -58,13 +61,17 @@ Conceptual Discussion:
     the territory and this seeks to reduce that error.
     *`@<Header0>.<Header0A>...` is a reference to another region in SeewaldNotes that
     contains information.
-    `? It would be pretty cool to have a ctags like parser for SeewaldNotes ?'
+    `? It would be pretty cool to have a ctags like parser for SeewaldNotes?'
+
+* Indentation Meaning:
+    * obviously, the block structure is heirarchical headings.
+    * the characters in a multi-line node should start at the same column position. This
+      is to distinguish from nodes without a leading `*'. 
 
 *Open Questions:
     *Latex uses $ <text> $ to enclose a mathematics mode because people often use latex
     for mathematics, so quickness of entering and exiting the mode is an opporunity for
     much time savings.`? What sort of shortcuts might I want ?'.
-    *`? What should the role of whitespace be?':
     *I like it how perl allows any character to be the separator between search
     and replace regions of search and replace constructs where the choice of charcter
     is inferred by the first one used. I should be mindful of how to incorperate something
@@ -74,7 +81,7 @@ Conceptual Discussion:
     *I named Seewald Notes, and the accompanying abbreviation in the file extension
     .swd, after myself. This naming is not deep; I predict that I am the only person
     to likely ever use this note taking structure so `Seewald' seems descriptive. If
-    anybody else ever adopts this structure, which I would consider a huge honor, the
+    anybody else ever adopts this structure, which I would consider a surprising honor, the
     name ought to be changed.
 
 *Other:
