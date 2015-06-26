@@ -59,10 +59,13 @@ Conceptual Discussion:
     annoying if people get carried away with it #'.
     *`^ ^' is analogy mode. A problem in people's thinking is mistaking the map for
     the territory and this seeks to reduce that error.
+    {{
     *`@<Header0>.<Header0A>...` is a reference to another region in SeewaldNotes that
     contains information.
-    `? It would be pretty cool to have a ctags like parser for SeewaldNotes?'
-
+    * `? It would be pretty cool to have a ctags like parser for SeewaldNotes?'
+    }}
+        these double curly braces around a section group them together in order to have
+        following commentary apply to both of them (syntactically, what i'm writing here).
 * Indentation Meaning:
     * obviously, the block structure is heirarchical headings.
     * the characters in a multi-line node should start at the same column position. This
