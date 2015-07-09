@@ -28,6 +28,9 @@ $ cp tools/swd_detect.vim ~/.vim/ftdetect/
 $ cp tools/SeewaldNotes.vim ~/.vim/ftplugin/
 ```
 
+### Issues
+The syntax highlighting feels buggy in terminal vim, but not in the MacVim application.
+
 ### Closing Thoughts
 
 A reader of a similar culture to I might recognize influences of BNF, Latex, the Spanish language, and Python. Because thinking is such a broad act, a diversity of influences rather than a purity of influences is beneficial.

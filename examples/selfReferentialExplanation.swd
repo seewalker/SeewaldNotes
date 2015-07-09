@@ -60,16 +60,23 @@ Conceptual Discussion:
     *`^ ^' is analogy mode. A problem in people's thinking is mistaking the map for
     the territory and this seeks to reduce that error.
     {{
-    *`@<Header0>.<Header0A>...` is a reference to another region in SeewaldNotes that
+    *`@<Header0>.<Header0A>...' is a reference to another region in SeewaldNotes that
     contains information.
     * `? It would be pretty cool to have a ctags like parser for SeewaldNotes?'
     }}
         these double curly braces around a section group them together in order to have
         following commentary apply to both of them (syntactically, what i'm writing here).
+
+* Knowledge about using this:
+    * Since refering to and finding one's previous notes is one of the major ways well-structured
+      notes happen, and keyword searches are the most convenient way to look for stuff when
+      editing text, it is a good idea to include synonyms in important section headers.
+
+
 * Indentation Meaning:
     * obviously, the block structure is heirarchical headings.
     * the characters in a multi-line node should start at the same column position. This
-      is to distinguish from nodes without a leading `*'. 
+      is to distinguish from nodes without a leading `*'.
 
 *Open Questions:
     *Latex uses $ <text> $ to enclose a mathematics mode because people often use latex
